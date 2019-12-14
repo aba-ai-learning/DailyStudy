@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
     for (int i = 0; i < 3; i++)
         array[i].resize(3);
 
-    // array = {1,2,3,2,5,9,3,8,12};  ## error: expected expression
+    // array = {{1,2,3},{2,5,9},{3,8,12}};  ## error: expected expression
     for (int i = 0; i < 3; i++)
         for (int j = 0; j < 3; j++)
             array[i][j] = (i * j);
