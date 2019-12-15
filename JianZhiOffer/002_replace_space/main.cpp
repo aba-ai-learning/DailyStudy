@@ -2,6 +2,11 @@
 题目描述
 请实现一个函数，将一个字符串中的每个空格替换成“%20”。
 例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。
+Notes：
+            string初始化 string str = " "; 内部operator+ 函数可以直接实现字符串的拼接
+            char* 是原始类型的一个指针变量，指向一个内存地址，存储char型的数据
+            string是一个类，是标准库的一部分
+            for 循环中先init部分在判断，若判断为真则循环主体，之后再进入第三部分的i--
 */
 
 #include <string.h>
@@ -16,9 +21,6 @@ public:
     {
         /*
             遍历str，当str[i] != ' ', new_string[count] = str[i], 反之相等
-            string初始化 string str = " "; 内部operator+ 函数可以直接实现字符串的拼接
-            char* 是原始类型的一个指针变量，指向一个内存地址，存储char型的数据
-            string是一个类，是标准库的一部分
         */
        string new_string = "";
        for (int i = 0; i < length; i++)

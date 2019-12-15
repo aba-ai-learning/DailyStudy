@@ -1,4 +1,6 @@
 /*
+TODO:递归方法为什么array总是空？？
+
 输入一个链表，按链表从尾到头的顺序返回一个ArrayList。
 该解是使用栈先入后出的特性，也可以使用递归的方法
 */
@@ -38,6 +40,18 @@ public:
     }
 };
 
+void printListFromTailToHeadRec(ListNode *head, vector<int> array)
+{
+    if (head != nullptr)
+    {
+        if (head->next != nullptr)
+        {
+            printListFromTailToHeadRec(head->next, array);
+        }
+        array.push_back(head->val);
+    }
+}
+
 int main(int argc, char* argv[])
 {
     ListNode *head = new ListNode(0);
@@ -51,7 +65,8 @@ int main(int argc, char* argv[])
 
     Solution sol;
     vector<int> a;
-    a = sol.printListFromTailToHead(head);
+    // a = sol.printListFromTailToHead(head);
+    printListFromTailToHeadRec(head, a);
     for (int i = 0; i < a.size(); i++)
     {
         cout << a[i] << " ";
