@@ -1,5 +1,5 @@
 /*
-TODO:递归方法为什么array总是空？？
+TODO:递归方法为什么array总是空？ 引用传递OK
 
 输入一个链表，按链表从尾到头的顺序返回一个ArrayList。
 该解是使用栈先入后出的特性，也可以使用递归的方法
@@ -40,7 +40,7 @@ public:
     }
 };
 
-void printListFromTailToHeadRec(ListNode *head, vector<int> array)
+void printListFromTailToHeadRec(ListNode *head, vector<int>& array)
 {
     if (head != nullptr)
     {
