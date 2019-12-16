@@ -32,7 +32,7 @@ using namespace std;
  public:
      TreeNode *reConstructBinaryTree(vector<int> pre, vector<int> vin)
      {
-        if (pre.size() <= 0)
+        if (pre.size() == 0)
             return nullptr;
         TreeNode *root = new TreeNode(pre[0]);
         int root_index_vin = 0;
