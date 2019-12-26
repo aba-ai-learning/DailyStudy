@@ -25,6 +25,10 @@ c++ 中map插入方式
 
 map & unordered_map
 
+The map::count() is a built-in function in C++ STL which returns 1 
+if the element with key K is present in the map container. 
+It returns 0 if the element with key K is not present in the container.
+
 */
 
 #include <vector>
