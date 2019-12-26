@@ -10,4 +10,45 @@
 因为 nums[0] + nums[1] = 2 + 7 = 9
 所以返回 [0, 1]
 
+思路: 
+for index, value in enumerate(nums):
+    target_rest = target - value
+    if target_rest in hashmap:
+        return [hashmap[value], index]
+    else:
+        hashmap[value] = index
+
+
+c++ 中map插入方式
+1. hashmap.insert(pair<int, int>(1, 3));
+2. hashmap[3] = 5;
+
+map & unordered_map
+
 */
+
+#include <vector>
+#include <unordered_map>
+#include <assert.h>
+
+using namespace std;
+vector<int> twoSum(vector<int> nums, int target)
+{
+    unordered_map<int, int> hashmap;
+    int length = nums.size();
+    for (int i = 0; i < length; i++)
+    {
+        if (hashmap.count(target - nums[i]))
+            return {hashmap[target - nums[i]], i};
+        hashmap[nums[i]] = i;
+    }
+
+}
+
+int main(int argv, char *argc[])
+{
+    std::vector<int> nums{2, 7, 11, 15};
+    std::vector<int> ret{0, 1};
+    assert(twoSum(nums, 9) == ret);
+    return 0;
+}
