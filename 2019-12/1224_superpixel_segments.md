@@ -14,3 +14,6 @@ This algorithm also uses a machine learning algorithm called minimum-spanning tr
 given scale or zoom factor on the image. The Reference Paper can be accessed here.
 
 https://blog.csdn.net/ttransposition/article/details/38024557
+
+该方案可以模拟动漫的涂抹效果
+
