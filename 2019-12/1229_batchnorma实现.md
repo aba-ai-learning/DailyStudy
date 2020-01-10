@@ -14,6 +14,6 @@ lambda 和 beta是在前向的过程中学习到的，为了一定程度还原�
 才能冻结bn层的参数
 
 
-pytorch接口
+###pytorch接口
 BatchNormNd(nchannel, affine=True) affine用来控制是否有可学习参数，即lambda和beta
 
