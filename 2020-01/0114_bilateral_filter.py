@@ -5,7 +5,7 @@ import math
 def distance(x,y, i,j):
     return np.sqrt((x-i)**2+(y-j)**2)
 
-
+### 2d gaussian
 def gaussian(x, sigma):
     alpha = (1.0 / (2 * math.pi * (sigma ** 2)))
     return alpha * math.exp(-x**2/2*sigma**2)
