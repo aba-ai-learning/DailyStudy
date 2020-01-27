@@ -1,8 +1,8 @@
 
 
 def check_palindrome(s, i, j):
-    length = 1
-    while(1):
+    length = 0
+    while True:
         i = i - 1
         j = j + 1
         if i < 0 or j > len(s)-1:
@@ -19,7 +19,7 @@ def longestPalindrome(s):
     :rtype: str
     """
     length = len(s)
-    sublen = 1
+    sublen = 0
 
     if length <= 1:
         return s
@@ -29,13 +29,13 @@ def longestPalindrome(s):
         begin = i
         end = i
         sublen = check_palindrome(s, begin, end)
-        maxstr = s[begin-sublen:end+sublen]
+        maxstr = s[begin-sublen:end+sublen+1]
         if s[i] == s[i+1]:
             begin = i
             end = i + 1
             sublen2 = check_palindrome(s, begin, end)
             if sublen2 >=  sublen:
-                maxstr = s[begin-sublen2:end+sublen2]
+                maxstr = s[begin-sublen2:end+sublen2+1]
 
         if len(maxstr) > max_length:
             max_length = len(maxstr)
