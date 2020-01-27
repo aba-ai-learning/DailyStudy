@@ -30,10 +30,7 @@ def longestPalindrome(s):
         begin = i
         end = i
         sublen = check_palindrome(s, begin, end)
-        if sublen > 0:
-            maxstr = s[begin-sublen:end+sublen+1]
-        else:
-            maxstr = s[begin]
+        maxstr = s[begin-sublen:end+sublen+1]
         if s[i] == s[i+1]:
             begin = i
             end = i + 1
