@@ -27,17 +27,20 @@ class Solution(object):
             begin = i
             end = i
             sublen = self.check_palindrome(s, begin, end)
-            maxstr = s[begin-sublen:end+sublen+1]
+            a = begin - sublen
+            b = end + sublen + 1
 
             if s[i] == s[i+1]:
                 begin = i
                 end = i + 1
                 sublen2 = self.check_palindrome(s, begin, end)
                 if sublen2 >= sublen:
-                    maxstr = s[begin-sublen2:end+sublen2+1]
+                    a = begin - sublen2
+                    b = end + sublen2 + 1
 
-            if len(maxstr) > maxlength:
-                maxstrfinal = maxstr
-                maxlength = len(maxstr)
+            if b-a > maxlength:
+                maxlength = b-a
+                bfinal = b
+                afinal = a
 
-        return maxstrfinal
+        return s[afinal:bfinal]
