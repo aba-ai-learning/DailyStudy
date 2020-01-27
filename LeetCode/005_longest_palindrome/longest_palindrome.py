@@ -1,5 +1,4 @@
 
-
 def check_palindrome(s, i, j):
     length = 0
     while True:
@@ -9,8 +8,9 @@ def check_palindrome(s, i, j):
             return length
         if s[i] == s[j]:
             length += 1
+        else:
+            return length
 
-    return length
 
 
 def longestPalindrome(s):
@@ -24,12 +24,16 @@ def longestPalindrome(s):
     if length <= 1:
         return s
     
-    max_length = 1
+    max_length = 0
+    maxstrfinal = ''
     for i in range(length-1):
         begin = i
         end = i
         sublen = check_palindrome(s, begin, end)
-        maxstr = s[begin-sublen:end+sublen+1]
+        if sublen > 0:
+            maxstr = s[begin-sublen:end+sublen+1]
+        else:
+            maxstr = s[begin]
         if s[i] == s[i+1]:
             begin = i
             end = i + 1
@@ -46,7 +50,7 @@ def longestPalindrome(s):
                     
 
 if __name__ == "__main__":
-    s = "cbababc"
+    s = "ac"
     res = check_palindrome(s, 3, 3)
     respalindrome = longestPalindrome(s)
     print(res)
