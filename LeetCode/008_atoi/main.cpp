@@ -78,17 +78,16 @@ public:
                 flag = 3;
                 if (negative)
                 {
-                    if (res > (-numeric_limits<int>::min() - (c - '0'))/10)
+                    if (res < (numeric_limits<int>::min() + (c - '0')) / 10)
                         return numeric_limits<int>::min();
-                    res = res * 10 + c - '0';
+                    res = res * 10 - (c - '0');
                 }
                 else
                 {
-                    if (res > numeric_limits<int>::max() - (c-'0')/10)
+                    if (res > (numeric_limits<int>::max() - (c - '0')) / 10)
                         return numeric_limits<int>::max();
                     res = res * 10 + c - '0';
                 }
-
             }
             else if (c == '+' && (flag == 0 || flag == 1))
             {
@@ -108,10 +107,7 @@ public:
                 break;
             }
         }
-        if (negative)
-            return -res;
-        if (res > numeric_limits<int>::max())
-            return res;
+
         return res;
     }
 };
