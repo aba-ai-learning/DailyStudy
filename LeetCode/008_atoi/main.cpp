@@ -73,14 +73,26 @@ public:
         for(int i = 0; i < length; i++)
         {
             char c = str[i];
-            if (c >= '0' && c <= '9' && (flag == 0 || flag == 1 || flag == 2 || flag == 3 || flag == 4))
+            if (c >= '0' && c <= '9' && (flag == 0 || flag == 1 || flag == 2 || flag == 3))
             {
-                flag = 4;
-                res = res*10 + c - '0';
+                flag = 3;
+                if (negative)
+                {
+                    if (res > (-numeric_limits<int>::min() - (c - '0'))/10)
+                        return numeric_limits<int>::min();
+                    res = res * 10 + c - '0';
+                }
+                else
+                {
+                    if (res > numeric_limits<int>::max() - (c-'0')/10)
+                        return numeric_limits<int>::max();
+                    res = res * 10 + c - '0';
+                }
+
             }
             else if (c == '+' && (flag == 0 || flag == 1))
             {
-                flag = 3;
+                flag = 2;
             }
             else if( c == '-' && (flag == 0 || flag == 1))
             {
@@ -93,13 +105,13 @@ public:
             }
             else
             {
-                if (negative)
-                    return -res;
-                return res;
+                break;
             }
         }
-        if(negative)
+        if (negative)
             return -res;
+        if (res > numeric_limits<int>::max())
+            return res;
         return res;
     }
 };
