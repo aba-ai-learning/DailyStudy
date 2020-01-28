@@ -29,6 +29,10 @@ The map::count() is a built-in function in C++ STL which returns 1
 if the element with key K is present in the map container. 
 It returns 0 if the element with key K is not present in the container.
 
+来源：力扣（LeetCode）
+链接：https://leetcode-cn.com/problems/reverse-integer
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+
 */
 
 #include <vector>
