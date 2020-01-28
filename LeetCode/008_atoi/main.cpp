@@ -60,70 +60,47 @@ using namespace std;
 class Solution
 {
 public:
-    int get_unsigned_integer(string str)
-    {
-        int length = str.size();
-        int integer = 0;
-        if(length == 0)
-        {
-            return 0;
-        }
-        for(int i = 0; i < length; i++)
-        {
-            if(48 <= str[i] && str[i]<= 57)
-            {
-                integer = integer*10 + (str[i] - 48);
-            }
-            else
-            {
-                return integer;
-            }
-
-        }
-        return integer;
-    }
     int myAtoi(string str)
     {
         int length = str.size();
         int res = 0;
+        int flag = 0;
+        bool negative = false;
         if(length == 0)
         {
             return 0;
         } 
-        if(48 <= str[0] &&  str[0] <= 57)
+        for(int i = 0; i < length; i++)
         {
-            res = get_unsigned_integer(str);
-            if (res > numeric_limits<int>::max())
+            char c = str[i];
+            if (c >= '0' && c <= '9' && (flag == 0 || flag == 1 || flag == 2 || flag == 3 || flag == 4))
             {
-                return numeric_limits<int>::max();
+                flag = 4;
+                res = res*10 + c - '0';
             }
-            return res;
-        }
-        else if(str[0] == 43)
-        {
-            string substr = str.substr(1,length-1);
-            res = get_unsigned_integer(substr);
-            if (res > numeric_limits<int>::max())
+            else if (c == '+' && (flag == 0 || flag == 1))
             {
-                return numeric_limits<int>::max();
+                flag = 3;
             }
-            return res;
-        }
-        else if(str[0] == 45)
-        {
-            string substr = str.substr(1, length-1);
-            res = 0 - get_unsigned_integer(substr);
-            if (res < numeric_limits<int>::min())
+            else if( c == '-' && (flag == 0 || flag == 1))
             {
-                return numeric_limits<int>::min();
+                flag = 2;
+                negative = true;
             }
-            return res;
+            else if (c == ' ' && (flag == 0 || flag == 1))
+            {
+                flag = 1;
+            }
+            else
+            {
+                if (negative)
+                    return -res;
+                return res;
+            }
         }
-        else
-        {
-            return 0;
-        }
-
+        if(negative)
+            return -res;
+        return res;
     }
 };
 
