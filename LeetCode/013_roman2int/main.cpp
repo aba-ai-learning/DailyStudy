@@ -50,27 +50,47 @@ C 可以放在 D (500) 和 M (1000) 的左边，来表示 400 和 900。
 #include <map>
 
 using namespace std;
-
 class Solution
 {
 public:
     int romanToInt(string s)
     {
         map<string, int> table =
-        {
-                {"M", 1000},
+            {
                 {"CM", 900},
-                {"D",  500},
                 {"CD", 400},
-                {"C",  100},
-                {"XC",  90},
-                {"L",   50},
-                {"XL",  40},
-                {"X",   10},
-                {"IX",   9},
-                {"V",    5},
-                {"IV",   4},
-                {"I",    1}
-        };
+                {"XC", 90},
+                {"XL", 40},
+                {"IX", 9},
+                {"IV", 4},
+                {"M", 1000},
+                {"D", 500},
+                {"C", 100},
+                {"L", 50},
+                {"X", 10},
+                {"V", 5},
+                {"I", 1}};
+
+        int ret = 0, index = 0;
+        int length = s.size();
+        while (index < length)
+        {
+            string current_str = s.substr(index, 2);
+            map<string, int>::iterator it = table.find(current_str);
+            if (it != table.end())
+            {
+                ret += it->second;
+                index += 2;
+            }
+            else
+            {
+                current_str = s.substr(index, 1);
+                it = table.find(current_str);
+                ret += it->second;
+                index += 1;
+            }
+        }
+
+        return ret;
     }
 };

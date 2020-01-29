@@ -45,11 +45,6 @@ public:
             else
                 i ++;
         }
+        return maxarea;
     }
 };
-
-int main(int argc, char *argv[])
-{
-    Solution sol;
-
-}
