@@ -19,45 +19,55 @@
 
 
 using namespace std;
+
 class Solution
 {
 public:
-    map<string, vector<string>> table =
+    vector<string> table =
         {
-            {"2", {"a", "b", "c"}},
-            {"3", {"d", "e", "f"}},
-            {"4", {"g", "h", "i"}},
-            {"5", {"j", "k", "l"}},
-            {"6", {"m", "n", "o"}},
-            {"7", {"p", "q", "r", "s"}},
-            {"8", {"t", "u", "v"}},
-            {"9", {"w", "x", "y", "z"}},
+            "abc",
+            "def",
+            "ghi",
+            "jkl",
+            "mno",
+            "pqrs",
+            "tuv",
+            "wxyz",
     };
 
     vector<string> letterCombinations(string digits)
     {
-        int length = digits.size();
         vector<string> ret;
-        if (length == 1)
+        if (digits.empty())
         {
-            return table[digits];
+            return ret;
         }
 
-        string sub_digits = digits.substr(0, length - 1);
-        string last_digit = digits.substr(length - 1);
+        std::function<void(std::string ref, int depth)> func;
+        func = [&](string ref, int depth) -> void {
+            int number = ref[depth] - '0' - 2;
+            string map_string = table[number];
 
-        // for(auto suffix : table[last_digit])
-        // {
-        //     vector<string> tmp = letterCombinations(sub_digits)
-        // }
-
-        for (auto item : letterCombinations(sub_digits))
-        {
-            for (auto suffix : table[last_digit])
+            if (depth == digits.size() - 1)
             {
-                ret.push_back((item + suffix));
+                for (auto c : map_string)
+                {
+                    ref[depth] = c;
+                    ret.push_back(ref);
+                }
             }
-        }
+            else
+            {
+                for (auto c : map_string)
+                {
+                    ref[depth] = c;
+                    func(ref, depth + 1);
+                }
+            }
+        };
+
+        func(digits, 0);
+
         return ret;
     }
 };
