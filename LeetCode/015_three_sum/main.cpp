@@ -31,7 +31,9 @@ public:
         vector<vector<int>> res;
 
         if (nums.size() < 3)
+        {
             return res;
+        }
 
         if (nums.size() == 3)
         {
@@ -46,7 +48,9 @@ public:
         for (auto it = nums.begin(); it != nums.end() - 2; ++it)
         {
             if (*it > 0)
+            {
                 break;
+            }
 
             if (it != nums.begin() && *it == *(it - 1))
             {
@@ -61,10 +65,12 @@ public:
                 if (it2 > it + 1 && *it2 == *(it2 - 1))
                 {
                     ++it2;
+                    continue;
                 }
                 if (it3 < nums.end() - 1 && *it3 == *(it3 + 1))
                 {
                     --it3;
+                    continue;
                 }
 
                 if (*it2 + *it3 > -(*it))
