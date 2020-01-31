@@ -18,8 +18,6 @@ public:
     int threeSumClosest(vector<int> &nums, int target)
     {
 
-        int error = abs(target);
-        int sumnum = 0;
         if (nums.size() < 3)
         {
             return 0;
@@ -28,6 +26,9 @@ public:
         {
             return nums[0] + nums[1] + nums[2];
         }
+
+        int sumnum = nums[0] + nums[1] + nums[2];
+        int error = abs(sumnum - target);
 
         sort(nums.begin(), nums.end());
 
