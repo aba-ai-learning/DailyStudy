@@ -30,24 +30,55 @@ public:
     {
         vector<vector<int>> res;
         sort(nums.begin(), nums.end());
+        if (nums.size() < 3)
+            return res;
 
-        for (vector<int>::iterator it = nums.begin(); it != nums.end() - 2; ++it)
+        if (nums.size() == 3)
         {
-            for (vector<int>::iterator it2 = it + 1; it2 != nums.end() - 1; it2++)
+            if (nums[0] + nums[1] + nums[2] == 0)
+            {
+                res.emplace_back(std::move(nums));
+            }
+            return res;
+        }
+
+        for (auto it = nums.begin(); it != nums.end() - 2; it++)
+        {
+            if (*it > 0)
+                break;
+
+            if (it != nums.begin() && *it == *(it - 1))
+            {
+                continue;
+            }
+
+            for (auto it2 = it + 1; it2 != nums.end() - 1; it2++)
             {
                 int target = -(*it + *it2);
-                for (vector<int>::iterator it3 = it2 + 1; it3 != nums.end(); it3++)
+
+                for (auto it3 = nums.end() - 1; it3 >= it2 + 1; it3--)
                 {
+                    if (it3 < nums.end() - 1 && *it3 == *(it3 + 1))
+                    {
+                        continue;
+                    }
+
                     if (*it3 == target)
                     {
-                        res.push_back({(*it), (*it2), (*it3)});
+                        vector<int> tmp = {(*it), (*it2), (*it3)};
+                        res.push_back(tmp);
                     }
                 }
             }
-            vector<int>::iterator next_it = it + 1;
-            if (*it == *next_it)
-                it++;
         }
+
         return res;
     }
 };
+
+int main(int argc, char *argv[])
+{
+    Solution sol;
+    vector<int> nums = {-1, 0, 1, 2, -1, -4};
+    vector<vector<int>>res =  sol.threeSum(nums);
+}
