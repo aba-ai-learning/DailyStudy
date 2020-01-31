@@ -29,7 +29,7 @@ public:
     vector<vector<int>> threeSum(vector<int> &nums)
     {
         vector<vector<int>> res;
-        sort(nums.begin(), nums.end());
+
         if (nums.size() < 3)
             return res;
 
@@ -42,7 +42,8 @@ public:
             return res;
         }
 
-        for (auto it = nums.begin(); it != nums.end() - 2; it++)
+        sort(nums.begin(), nums.end());
+        for (auto it = nums.begin(); it != nums.end() - 2; ++it)
         {
             if (*it > 0)
                 break;
@@ -52,22 +53,34 @@ public:
                 continue;
             }
 
-            for (auto it2 = it + 1; it2 != nums.end() - 1; it2++)
+            auto it2 = it + 1;
+            auto it3 = nums.end() - 1;
+
+            while (it2 < it3)
             {
-                int target = -(*it + *it2);
-
-                for (auto it3 = nums.end() - 1; it3 >= it2 + 1; it3--)
+                if (it2 > it + 1 && *it2 == *(it2 - 1))
                 {
-                    if (it3 < nums.end() - 1 && *it3 == *(it3 + 1))
-                    {
-                        continue;
-                    }
+                    ++it2;
+                }
+                if (it3 < nums.end() - 1 && *it3 == *(it3 + 1))
+                {
+                    --it3;
+                }
 
-                    if (*it3 == target)
-                    {
-                        vector<int> tmp = {(*it), (*it2), (*it3)};
-                        res.push_back(tmp);
-                    }
+                if (*it2 + *it3 > -(*it))
+                {
+                    --it3;
+                }
+                else if (*it2 + *it3 < -(*it))
+                {
+                    ++it2;
+                }
+                else
+                {
+                    vector<int> tmp = {(*it), (*it2), (*it3)};
+                    res.push_back(tmp);
+                    --it3;
+                    ++it2;
                 }
             }
         }
