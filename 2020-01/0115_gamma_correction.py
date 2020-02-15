@@ -19,16 +19,17 @@ def adjust_brightness_gamma_correction(img, gamma):
     # same thing but a bit slower
     # cv2.convertScaleAbs(img, alpha=brightness_factor, beta=0)
     if img.shape[2] == 1:
-        return cv2.LUT(img, gamma_table)[:, :, np.newaxis]
+        out = cv2.LUT(img, gamma_table)[:, :, np.newaxis]
     else:
-        return cv2.LUT(img, gamma_table)
-
+        out = cv2.LUT(img, gamma_table)
+    return out
 
 if __name__ == '__main__':
 
-    imgpath = '00000006.jpg'
+    imgpath = '../images/wxy.png'
     img = cv2.imread(imgpath, cv2.IMREAD_UNCHANGED)
-    out = adjust_brightness_gamma_correction(img, 0.5)
+    img = cv2.resize(img,(500,500))
+    out = adjust_brightness_gamma_correction(img, 1.5)
     cv2.imshow('view', out)
     cv2.imshow('input', img)
     cv2.waitKey(0)

@@ -28,70 +28,52 @@ class Solution
 public:
     vector<vector<int>> threeSum(vector<int> &nums)
     {
-        vector<vector<int>> res;
-
-        if (nums.size() < 3)
+        vector<vector<int>> ret;
+        if(nums.size() < 3)
         {
-            return res;
+            return ret;
         }
-
-        if (nums.size() == 3)
+        
+        for(auto i = nums.begin(); i < nums.end() - 2; ++i)
         {
-            if (nums[0] + nums[1] + nums[2] == 0)
-            {
-                res.emplace_back(std::move(nums));
-            }
-            return res;
-        }
-
-        sort(nums.begin(), nums.end());
-        for (auto it = nums.begin(); it != nums.end() - 2; ++it)
-        {
-            if (*it > 0)
-            {
-                break;
-            }
-
-            if (it != nums.begin() && *it == *(it - 1))
+            if(i > nums.begin() && (*i) == (*i-1))
             {
                 continue;
             }
+            auto j = i + 1;
+            auto k = nums.end() - 1;
 
-            auto it2 = it + 1;
-            auto it3 = nums.end() - 1;
-
-            while (it2 < it3)
+            while(j < k)
             {
-                if (it2 > it + 1 && *it2 == *(it2 - 1))
+                if (j > i+1 && (*j) == (*j - 1))
                 {
-                    ++it2;
+                    ++j;
                     continue;
                 }
-                if (it3 < nums.end() - 1 && *it3 == *(it3 + 1))
+                if(k < nums.end()-1 && (*k) == (*k+1))
                 {
-                    --it3;
+                    --k;
                     continue;
                 }
-
-                if (*it2 + *it3 > -(*it))
+                
+                if(*i + *j + *k > 0)
                 {
-                    --it3;
+                    --k;
                 }
-                else if (*it2 + *it3 < -(*it))
+                else if(*i + *j + *k < 0)
                 {
-                    ++it2;
+                    ++j;
                 }
                 else
                 {
-                    vector<int> tmp = {(*it), (*it2), (*it3)};
-                    res.push_back(tmp);
-                    --it3;
-                    ++it2;
+                    ret.push_back({(*i), (*j), (*k)});
+                    --k;
+                    ++j;
                 }
             }
         }
 
-        return res;
+        return ret;
     }
 };
 
