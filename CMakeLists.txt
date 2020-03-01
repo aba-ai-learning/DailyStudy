@@ -9,7 +9,7 @@ if(WIN32)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /std:c++14")
     add_definitions(-D_SCL_SECURE_NO_WARNINGS) # suppress std::copy_n warnings
 else()
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -fPIC -Wno-format-security -Bsymbolic -Bsymbolic-functions")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -fPIC -Wno-format-security -Bsymbolic -Bsymbolic-functions -fsanitize=address")
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fPIC -Wno-format-security -Bsymbolic -Bsymbolic-functions")
 
     # release flags
