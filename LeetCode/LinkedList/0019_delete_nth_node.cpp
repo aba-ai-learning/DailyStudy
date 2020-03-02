@@ -26,19 +26,23 @@
 3. p向前移动n个后再同时移动p,q 
 4. 将q的下一个节点指向它的下下个
 返回dummyhead.next
+这种方式时间复杂度O(L) 空间复杂度O(1)
 
-还有一种用vector<ListNode *> 将所有的节点地址存下来后，直接倒数第n+1个指向倒数第n-1个
+
+还有一种用vector<ListNode *> 将所有的节点地址存下来后
+直接倒数第n+1个指向它的下下个，这种方法时间和空间复杂度都是O(L)
+
 
 */
 
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
- * };
- */
+//Definition for singly-linked list.
+struct ListNode
+{
+    int val;
+    ListNode *next;
+    ListNode(int x) : val(x), next(NULL) {}
+};
+
 class Solution
 {
 public:
@@ -65,6 +69,28 @@ public:
         list_q->next = list_q->next->next;
 
         return dummyhead.next;
+    }
+
+    ListNode *removeNthFromEnd2(ListNode *head, int n)
+    {
+        if (head == nullptr)
+        {
+            return nullptr;
+        }
+        vector<ListNode *> vec;
+        ListNode *dummyhead = new ListNode(0);
+        dummyhead->next = head;
+        vec.push_back(dummyhead);
+        while (head)
+        {
+            vec.push_back(head);
+            head = head->next;
+        }
+        int size = vec.size();
+
+        vec[size - n - 1]->next = vec[size - n - 1]->next->next;
+
+        return dummyhead->next;
     }
 };
 
