@@ -20,12 +20,13 @@
 #include <iostream>
 
 // Definition for singly-linked list.
-struct ListNode {
+struct ListNode
+{
     int val;
     ListNode *next;
     ListNode(int x) : val(x), next(nullptr) {}
- };
- 
+};
+
 class Solution
 {
 public:
@@ -48,9 +49,9 @@ public:
         while (l1)
         {
             //优化点，判断flag=0后p->next = l1
-            int tmp = l1->val+flag;
-            ListNode *next = new ListNode(tmp%10);
-            flag = tmp/10;
+            int tmp = l1->val + flag;
+            ListNode *next = new ListNode(tmp % 10);
+            flag = tmp / 10;
             p->next = next;
             p = p->next;
             l1 = l1 ? l1->next : nullptr;
@@ -83,7 +84,7 @@ int main(int argc, char *argv[])
     ListNode *head2 = new ListNode(3);
     ListNode *node4 = new ListNode(5);
 
-    head2->next  = node4;
+    head2->next = node4;
 
     head->next = node1;
     node1->next = node2;

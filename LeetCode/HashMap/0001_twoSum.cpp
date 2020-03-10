@@ -50,7 +50,6 @@ vector<int> twoSum(vector<int> nums, int target)
             return {hashmap[target - nums[i]], i};
         hashmap[nums[i]] = i;
     }
-
 }
 
 int main(int argv, char *argc[])
@@ -60,5 +59,3 @@ int main(int argv, char *argc[])
     assert(twoSum(nums, 9) == ret);
     return 0;
 }
-
-

@@ -37,15 +37,15 @@ public:
         int max = 0;
         for (int i = 0; i < size; i++)
         {
-            for(int j = tmp; j < i; j++)
+            for (int j = tmp; j < i; j++)
             {
                 if (s[i] == s[j])
                 {
-                    tmp = j+1;
+                    tmp = j + 1;
                 }
             }
-            if (i-tmp + 1 > max)
-                max = i-tmp+1;
+            if (i - tmp + 1 > max)
+                max = i - tmp + 1;
         }
     }
 };
