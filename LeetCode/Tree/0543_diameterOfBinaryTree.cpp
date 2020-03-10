@@ -11,7 +11,7 @@
       4   5    
 返回 3, 它的长度是路径 [4,2,1,3] 或者 [5,2,1,3]。
 
-注意：两结点之间的路径长度是以它们之间边的数目表示。
+注意：两结点之间的路径长度是以它们之间边的数目表示。 所以ans-1
 
 来源：力扣（LeetCode）
 链接：https://leetcode-cn.com/problems/diameter-of-binary-tree
