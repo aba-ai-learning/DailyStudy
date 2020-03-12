@@ -1,3 +1,5 @@
+//注意查找左边界和查找有边界时的开闭状态
+
 class Solution
 {
 public:
@@ -7,18 +9,11 @@ public:
         if (nums.size() < 1)
             return res;
 
-        int lo = 0, hi = nums.size()-1;
+        int lo = 0, hi = nums.size() - 1;
         while (lo < hi)
         {
             int mi = (lo + hi) / 2;
-            if(nums[mi] < target)
-            {
-                lo = mi+1;
-            }
-            else
-            {
-                hi = mi;
-            }
+            nums[mi] < target ? lo = mi + 1 : hi = mi;
         }
 
         if (lo == nums.size())
@@ -32,14 +27,7 @@ public:
         while (lo < hi)
         {
             int mi = (lo + hi) / 2;
-            if(nums[mi] > target)
-            {
-                hi = mi;
-            }
-            else
-            {
-                lo = mi-1;
-            }
+            target < nums[mi] ? hi = mi : lo = mi + 1;
         }
         res[1] = lo - 1;
         return res;
