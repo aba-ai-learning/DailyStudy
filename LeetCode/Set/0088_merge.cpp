@@ -21,7 +21,9 @@ nums2 = [2,5,6],       n = 3
 链接：https://leetcode-cn.com/problems/merge-sorted-array
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 
-set容器
+set容器, 插入元素自动排序（红黑树方法）
+其中multiset允许重复的数据
+而set只会保存不同的数据
 */
 
 class Solution
