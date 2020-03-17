@@ -22,5 +22,4 @@ else()
     endif()
 endif()
 
-add_subdirectory(JianZhiOffer)
 add_subdirectory(LeetCode)
